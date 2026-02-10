@@ -38,7 +38,7 @@ dependencies {
 
     // Annotation Command Framework: https://github.com/aikar/commands
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
-    implementation("de.exlll:configlib-paper:4.5.0")
+    implementation("de.exlll:configlib-paper:4.8.1")
 }
 
 shadowJar {
