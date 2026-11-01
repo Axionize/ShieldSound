@@ -64,7 +64,23 @@ public final class ShieldSound extends JavaPlugin {
     }
 
     private boolean setupEntityLiving() {
-        version = Double.parseDouble(Bukkit.getBukkitVersion().split("-")[0].replaceFirst("1.", ""));
+        String serverVersion = Bukkit.getBukkitVersion().split("-")[0];
+
+        // Bukkit 1.x versions used a two-component version after the leading
+        // "1." (for example, 1.21.1 -> 21.1). Newer Paper releases use the
+        // calendar version scheme (for example, 26.2.build.135), which is not
+        // a valid double. Keep the numeric value only for the legacy branch;
+        // modern Paper always has the public absorption API.
+        if (serverVersion.startsWith("1.")) {
+            String legacyVersion = serverVersion.substring(2);
+            int secondDot = legacyVersion.indexOf('.');
+            if (secondDot >= 0) {
+                legacyVersion = legacyVersion.substring(0, secondDot + 2);
+            }
+            version = Double.parseDouble(legacyVersion);
+        } else {
+            version = Double.POSITIVE_INFINITY;
+        }
 
         if (version >= 14.4) // >= 1.14.4
             entityLiving = new SSEntityLivingSpigot();

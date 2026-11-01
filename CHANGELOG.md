@@ -48,3 +48,6 @@
 ### Bug Fixes
 
 * fixed version checker ([1502ebe](https://github.com/vicen621/ShieldSound/commit/1502ebe67762baa77e20d7c88a4f217a9d9ae7ff))
+## 1.1.3
+
+- Fixed startup on Paper's calendar-version releases such as 26.2 by avoiding decimal parsing of the full Bukkit version string.
